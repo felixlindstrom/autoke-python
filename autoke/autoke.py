@@ -54,7 +54,6 @@ class Engine:
 class StopList:
     def __init__(self, file_path=None):
         self.words = []
-        self.pattern = ''
         if file_path is not None:
             self.load_file(file_path)
 
@@ -73,7 +72,7 @@ class StopList:
         return re.compile('|'.join(words), re.IGNORECASE)
 
     def add(self, word):
-        self.words.append(word.lower().strip())
+        self.words.append(str(word).lower().strip())
 
     def has(self, word):
         return str(word).strip().lower() in self.words
